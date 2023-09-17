@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:week_pick_button/kit/rpx.dart';
-
+import 'package:week_pick_button/src/kit/rpx.dart';
 
 class Empty {
   static const SizedBox widget = SizedBox.shrink();

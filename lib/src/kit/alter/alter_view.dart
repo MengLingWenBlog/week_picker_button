@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:week_pick_button/kit/rpx.dart';
+import 'package:week_pick_button/src/kit/rpx.dart';
 
 
 class AlertView {

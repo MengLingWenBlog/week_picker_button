@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:week_pick_button/kit/rpx.dart';
+import 'package:week_pick_button/src/kit/rpx.dart';
 
 import 'config/config.dart';
 

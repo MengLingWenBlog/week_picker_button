@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:week_pick_button/kit/drop_button.dart';
-import 'package:week_pick_button/kit/rpx.dart';
+import 'package:week_pick_button/src/kit/rpx.dart';
 import 'kit/button_ext.dart';
 import 'kit/date_time_format.dart';
+import 'kit/drop_button.dart';
 import 'kit/text_button_ext.dart';
 
 class WeekPicker extends StatefulWidget {
