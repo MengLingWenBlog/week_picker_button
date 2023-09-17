@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:week_pick_button/week_picker_button.dart';
+import "package:week_pick_button/week_pick_button.dart";
 
 void main() {
   runApp(const MyApp());

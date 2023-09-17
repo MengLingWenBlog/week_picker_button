@@ -4,11 +4,11 @@
 In your pubspec.yaml
 ```yaml
 dependencies:
-  week_pick_button: ^0.0.2
+  week_pick_button: ^0.0.3
 ```
 Attention! In Flutter 3.7 the Badge widget was introduced in the Material library, so to escape the ambiguous imports you need to import the package like this:
 ```dart
-import 'package:week_pick_button/week_picker_button.dart';
+import "package:week_pick_button/week_pick_button.dart";
 ```
 and then use the "badges.Badge" widget instead of the "Badge" widget. The same for all the classes from this package.
 <br>
