@@ -1,6 +1,6 @@
 name: week_pick_button
-description: this is  a week_picker.
-version: 0.0.3
+description: this is  a week_picker You can select each year, and you can select any number of weeks, and the plugin will return the start time of the target week.
+version: 0.0.4
 homepage: https://github.com/MengLingWenBlog/week_picker_button
 
 environment:
