@@ -23,43 +23,58 @@ class WeekPickerButton extends StatefulWidget {
 }
 
 class _WeekPickerButtonState extends State<WeekPickerButton> {
-  // DateTime? initialDate;
 
-  String date = "";
+  String buttonString = "";
+
+  DateTime? initDate;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    date =
-        "${DateTimeFormat.toStr(widget.initialDate, "yyyy")}年 第${getWeekNumber(widget.initialDate)}周";
+
+    initDate = widget.initialDate;
+
+    buttonString =
+        "${DateTimeFormat.toStr(initDate!, "yyyy")}年 第${getWeekNumber(initDate!)}周";
+
     setState(() {});
   }
 
   int getWeekNumber(DateTime date) {
-    DateTime januaryFirst = DateTime(date.year, 1, 1);
-    int daysOffset = januaryFirst.weekday - 1;
-    DateTime firstMonday = januaryFirst.subtract(Duration(days: daysOffset));
-    int currentDayOfYear = date.difference(firstMonday).inDays + 1;
-    int currentWeek = (currentDayOfYear / 7).ceil();
-    return currentWeek;
+    int dayOfYear = int.parse(DateTimeFormat.toStr(date, "D"));
+    int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
+    if (woy < 1) {
+      woy = numOfWeeks(date.year - 1);
+    } else if (woy > numOfWeeks(date.year)) {
+      woy = 1;
+    }
+    return woy;
+  }
+
+  //一年一共有几周
+  int numOfWeeks(int year) {
+    DateTime dec28 = DateTime(year, 12, 28);
+    int dayOfDec28 = int.parse(DateTimeFormat.toStr(dec28, "D"));
+    return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
   }
 
   @override
   Widget build(BuildContext context) {
     return TextButtonExt(
-      title: date,
+      title: buttonString,
       onPressed: () {
         AlertView(
           context: context,
           content: WeekPicker(
-            initialDate: widget.initialDate,
+            initialDate: initDate!,
             firstDate: widget.firstDate,
             lastDate: widget.lastDate,
             onChanged: (value) {
               DateTime time = DateTimeFormat.toDateTime(value);
-              date =
+              buttonString =
                   "${DateTimeFormat.toStr(time, "yyyy")}年 第${getWeekNumber(time)}周";
+              initDate = DateTimeFormat.toDateTime(value);
               setState(() {});
               widget.onChanged.call(value);
             },
