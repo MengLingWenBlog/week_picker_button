@@ -18,6 +18,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      now = DateTime(2023, 5, 11); // 更新now的值
+      setState(() {});
+    });
   }
 
   @override
@@ -30,8 +34,8 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: WeekPickerButton(
             initialDate: now,
-            firstDate: DateTime(now.year - 1, 1, 1),
-            lastDate: DateTime(now.year + 1, 1, 1),
+            firstDate: DateTime(now.year - 1, 5, 6),
+            lastDate: DateTime(now.year + 1, 5, 6),
             onChanged: (value) {
               print(value);
             },

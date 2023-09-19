@@ -45,7 +45,7 @@ class WeekPickerButton extends StatefulWidget {
 }
 
 class _WeekPickerButtonState extends State<WeekPickerButton> {
-  String buttonString = "";
+  late String buttonString;
 
   late DateTime initDate;
 
@@ -55,11 +55,11 @@ class _WeekPickerButtonState extends State<WeekPickerButton> {
 
   late Color primaryColor;
 
+  bool _innerState = false;
+
   @override
   void initState() {
     super.initState();
-    //如果没有主题色，就是用新系统默认色
-    initDate = widget.initialDate;
     buttonTextFormat = widget.buttonTextFormat ??
         (int year, int weekNumber) => "$year年 第$weekNumber周";
     weekWidgetFormat = widget.weekWidgetFormat ??
@@ -67,15 +67,20 @@ class _WeekPickerButtonState extends State<WeekPickerButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("第$week周"),
-                Text("周一:${DateTimeFormat.toStr(monday, "MM月dd日")}",style: const TextStyle(
-                  fontSize: 14,
-                ),),
-                Text("周日:${DateTimeFormat.toStr(sunday, "MM月dd日")}",style: const TextStyle(
-                  fontSize: 14,
-                ),),
+                Text(
+                  "周一:${DateTimeFormat.toStr(monday, "MM月dd日")}",
+                  style: const TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  "周日:${DateTimeFormat.toStr(sunday, "MM月dd日")}",
+                  style: const TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
               ],
             );
-    buttonString = buttonTextFormat(initDate.year, getWeekNumber(initDate));
   }
 
   int getWeekNumber(DateTime date) {
@@ -100,15 +105,21 @@ class _WeekPickerButtonState extends State<WeekPickerButton> {
     int weekNumber = getWeekNumber(value);
     buttonString = buttonTextFormat(value.year, weekNumber);
     initDate = value;
+    _innerState = true;
     setState(() {});
     widget.onChanged?.call(value);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_innerState) {
+      _innerState = false;
+    } else {
+      initDate = widget.initialDate;
+    }
+    buttonString = buttonTextFormat(initDate.year, getWeekNumber(initDate));
     primaryColor = widget.primaryColor ?? Theme.of(context).primaryColor;
     return TextButton(
-      child: Text(buttonString),
       onPressed: () {
         AlertView(
           context: context,
@@ -117,13 +128,14 @@ class _WeekPickerButtonState extends State<WeekPickerButton> {
             firstDate: widget.firstDate,
             lastDate: widget.lastDate,
             weekWidgetFormat: weekWidgetFormat,
-            onChanged: widget.onChanged == null ? null : onChanged,
+            onChanged: onChanged,
             primaryColor: primaryColor,
             width: widget.width,
             height: widget.width,
           ),
         ).show();
       },
+      child: Text(buttonString),
     );
   }
 }
