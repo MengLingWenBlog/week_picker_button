@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:week_pick_button/src/kit/rpx.dart';
 
 
 class AlertView {
@@ -28,7 +27,7 @@ class AlertView {
         title: title,
         backgroundColor: backgroundColor,
         // backgroundColor: Colors.white,
-        titlePadding: EdgeInsets.all(15.r),
+        //titlePadding: const EdgeInsets.all(15),
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         content: content,

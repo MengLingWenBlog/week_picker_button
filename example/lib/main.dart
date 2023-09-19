@@ -13,31 +13,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  DateTime now = DateTime.now();
+
   @override
   void initState() {
     super.initState();
   }
 
-  void onChangeWeek(value) {
-    print(value);
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
         body: Center(
           child: WeekPickerButton(
-            initialDate: DateTime.now(),
-            firstDate: "2021",
-            lastDate: "2024",
-            onChanged: onChangeWeek,
+            initialDate: now,
+            firstDate: DateTime(now.year - 1, 1, 1),
+            lastDate: DateTime(now.year + 1, 1, 1),
+            onChanged: (value) {
+              print(value);
+            },
           ),
         ),
       ),
