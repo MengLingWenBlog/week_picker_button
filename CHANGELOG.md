@@ -1,5 +1,5 @@
 ## [0.0.5] - [September 20, 2023]
-* modify many bugs.
+* modify many bugs and you can custom widget size.
 
 ## [0.0.4] - [September 19, 2023]
 * modify bugs.
