@@ -42,11 +42,11 @@ class _DropButtonState<T> extends State<DropButton<T>> {
         items: widget.list
             .map(
               (DropItem<T> e) => DropdownMenuItem<T>(
-            alignment: Alignment.center,
-            value: e.value,
-            child: Text(e.title),
-          ),
-        )
+                alignment: Alignment.center,
+                value: e.value,
+                child: Text(e.title),
+              ),
+            )
             .toList(),
         value: v,
         menuItemStyleData: const MenuItemStyleData(
@@ -59,14 +59,14 @@ class _DropButtonState<T> extends State<DropButton<T>> {
         onChanged: widget.onChanged == null
             ? null
             : (T? value) {
-          if (value == null) {
-            return;
-          }
-          v = value;
-          _innerState = true;
-          widget.onChanged?.call(value);
-          setState(() {});
-        },
+                if (value == null) {
+                  return;
+                }
+                v = value;
+                _innerState = true;
+                widget.onChanged?.call(value);
+                setState(() {});
+              },
       ),
     );
     if (widget.width != null) {

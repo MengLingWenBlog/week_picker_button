@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class AlertView {
   final BuildContext context;
   final Widget? title;
