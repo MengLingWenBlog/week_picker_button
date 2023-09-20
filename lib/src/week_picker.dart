@@ -46,6 +46,8 @@ class _WeekPickerState extends State<WeekPicker> {
 
   List<int> yearList = []; //年份列表
 
+  double initOffset = 0.0;
+
   @override
   void initState() {
     super.initState();
@@ -60,9 +62,20 @@ class _WeekPickerState extends State<WeekPicker> {
 
     endDate = weekToDay[1]; //初始化结束时间
 
+    translationOffset();//计算显示的偏移量
+
     getYearList(); //
 
     _getData(); //获取数据
+  }
+
+
+  void translationOffset() {
+    if (nowWeekNumber % 3 == 0) {
+      initOffset = ((nowWeekNumber / 3) - 1) * (widget.width - 50) / 3 / 1.2;
+    } else {
+      initOffset = (nowWeekNumber ~/ 3) * (widget.width - 50) / 3 / 1.2;
+    }
   }
 
   //获取初始化年份数据
@@ -110,7 +123,8 @@ class _WeekPickerState extends State<WeekPicker> {
           weekNumber: i,
           start: list[0],
           end: list[1],
-          selected: nowWeekNumber == i ? true : false,
+          selected:
+              startDate.year == nowDate && nowWeekNumber == i ? true : false,
           color: list[0].isBefore(widget.firstDate) ||
                   list[0].isAfter(widget.lastDate)
               ? Colors.grey.shade200
@@ -144,6 +158,8 @@ class _WeekPickerState extends State<WeekPicker> {
       startDate = item.start;
       endDate = item.end;
       setState(() {});
+      widget.onChanged?.call(startDate);
+      Navigator.pop(context);
     }
   }
 
@@ -179,6 +195,9 @@ class _WeekPickerState extends State<WeekPicker> {
           ),
           Expanded(
             child: GridView.count(
+              controller: ScrollController(
+                initialScrollOffset: nowDate == startDate.year ? initOffset : 0,
+              ),
               crossAxisCount: 3,
               // 每行显示的列数
               childAspectRatio: 1.2,
@@ -209,15 +228,10 @@ class _WeekPickerState extends State<WeekPicker> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(onPressed: onTapWeek, child: const Text("取消")),
-              FilledButton(
-                  onPressed: onEnterWeekPicker, child: const Text("确定")),
             ],
           )
         ],
