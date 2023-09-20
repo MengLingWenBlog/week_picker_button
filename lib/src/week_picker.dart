@@ -62,13 +62,12 @@ class _WeekPickerState extends State<WeekPicker> {
 
     endDate = weekToDay[1]; //初始化结束时间
 
-    translationOffset();//计算显示的偏移量
+    translationOffset(); //计算显示的偏移量
 
     getYearList(); //
 
     _getData(); //获取数据
   }
-
 
   void translationOffset() {
     if (nowWeekNumber % 3 == 0) {
