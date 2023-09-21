@@ -126,7 +126,7 @@ class _WeekPickerState extends State<WeekPicker> {
               startDate.year == nowDate && nowWeekNumber == i ? true : false,
           color: list[0].isBefore(widget.firstDate) ||
                   list[0].isAfter(widget.lastDate)
-              ? Colors.grey.shade200
+              ? Colors.grey.shade300
               : Colors.white,
         ),
       );
@@ -209,11 +209,12 @@ class _WeekPickerState extends State<WeekPicker> {
                   return GestureDetector(
                     child: Container(
                       decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                             width: 1,
                             color: item.selected
                                 ? widget.primaryColor
-                                : Colors.black12,
+                                : Colors.black,
                           ),
                           color: item.selected
                               ? widget.primaryColor.withOpacity(.5)
@@ -227,10 +228,25 @@ class _WeekPickerState extends State<WeekPicker> {
               ),
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton(onPressed: onTapWeek, child: const Text("取消")),
+              Container(
+                width: 60,
+                height: 35,
+                padding: const EdgeInsets.all(0),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: TextButton(
+                  onPressed: onTapWeek,
+                  child: const Text("取消"),
+                ),
+              )
             ],
           )
         ],

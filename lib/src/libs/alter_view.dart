@@ -25,8 +25,6 @@ class AlertView {
       builder: (BuildContext context) => AlertDialog(
         title: title,
         backgroundColor: backgroundColor,
-        // backgroundColor: Colors.white,
-        //titlePadding: const EdgeInsets.all(15),
         insetPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
         content: content,
