@@ -4,7 +4,7 @@
 In your pubspec.yaml
 ```yaml
 dependencies:
-  week_pick_button: ^0.0.6
+  week_pick_button: ^0.0.7
 ```
 
 ```dart

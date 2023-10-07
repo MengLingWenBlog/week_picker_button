@@ -1,6 +1,9 @@
+## [0.0.7] - [October 07, 2023]
+* modify many bugs and style, this is a perfect pro.
+
 ## [0.0.6] - [September 21, 2023]
 * modify many bugs and style, this is a perfect pro.
-* 
+
 ## [0.0.5] - [September 20, 2023]
 * modify many bugs and you can custom widget or size.
 
